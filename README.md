@@ -1,4 +1,4 @@
-## Flare7K: A Phenomenological Nighttime Flare Removal Dataset
+## Flare7K: A Phenomenological Nighttime Flare Removal Dataset (NeurIPS 2022)
 
 [Paper](https://openreview.net/pdf?id=Proso5bUa) | [Project Page](https://nukaliad.github.io/projects/Flare7K) | [Video](https://youtu.be/CR3VFj4NOQM)
 
@@ -12,7 +12,15 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 
 <img src="assets/flare7k.png" width="800px"/>
 
+### Update
+
+- **2022.10.9**: Update baseline inference code for flare removal.
+- **2022.09.16**: Our paper *Flare7K: A Phenomenological Nighttime Flare Removal Dataset* is accepted by the NeurIPS 2022 Track Datasets and Benchmarks. 🤗
+- **2022.08.27**: Update dataloader for our dataset.
+- **2022.08.19**: This repo is created.
+
 #### Data download:
+
 (all data is hosted on Google Drive)
 |     | Link | Number | Description
 | :--- | :--: | :----: | :---- | 
@@ -29,9 +37,17 @@ If you only want to generate the flare-corrupted image without reflective flare,
 ```
 
 
-### Code and Model
+### Pretrained Model
 
-The code and pretrained models will be released soon. Please stay tuned! :hugs:
+The inference code based on Uformer is released Now. Your can download the pretrained checkpoints on [GoogleDrive](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing). Please place it under the `experiments` folder and unzip it, then you can run the `deflare.ipynb` for inference. We provide two models, the model in the folder `uformer` can help remove the reflective flare and the `uformer_noreflection` one can only help remove the scattering flares. 
+
+### TODO
+
+- [ ] Add a test dataset with around 600 real-world flare-corrupted images.
+- [ ] Add a colab version of our flare removal baseline model.
+
+- [ ] Add training code and config files.
+- [ ] Upload a Baidu Netdisk version for our dataset and pretrained model.  Please stay tuned! :hugs:
 
 ### License
 
