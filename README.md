@@ -14,6 +14,7 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 
 ### Update
 
+- **2022.10.12**: Upload a flare-corrupted test dataset without ground truth.
 - **2022.10.11**: Upload the dataset and pretrained model in Baidu Netdisk.
 - **2022.10.9**: Update baseline inference code for flare removal.
 - **2022.09.16**: Our paper *Flare7K: A Phenomenological Nighttime Flare Removal Dataset* is accepted by the NeurIPS 2022 Track Datasets and Benchmarks. 🤗
@@ -27,7 +28,7 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 | :--- | :--: | :----: | :---- | ---- |
 | Flares | [link](https://pan.baidu.com/s/1fiuOcygs0bfhWBvYndkVtw?pwd=x420) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) | 7,000 | We offers 5,000 scattering flare images and 2,000 reflective flare images, consisting of 25 types of scattering flares and 10 types of reflective flares.|
 | Background Images| [link](https://pan.baidu.com/s/1BYPRCNSsVmn4VvuU4y4C-Q?pwd=zoyv) | [link](https://drive.google.com/file/d/1GNFGWfUbgXfELx5fZtjTjU2qqWnEa-Lr/view) | 23,949 | The background images are sampled from [[Single Image Reflection Removal with Perceptual Losses, Zhang et al., CVPR 2018]](https://people.eecs.berkeley.edu/~cecilia77/project-pages/reflection.html). We filter our most of the flare-corrupted images and overexposed images.|
-| Flare-corrupted images |  |  | 645 | We offer an extra flare-corrupted dataset without ground truth. It contains 645 images captured by different cameras and some images are very challenging. |
+| Flare-corrupted images | [link](https://pan.baidu.com/s/1bCOOpO3FKBZvI1aezfbFOw?pwd=ears) | [link](https://drive.google.com/file/d/19kLXf8roHoJmxyphYvrCs9zDAXsrL1sU/view?usp=sharing) | 645 | We offer an extra flare-corrupted dataset without ground truth. It contains 645 images captured by different cameras and some images are very challenging. |
 
 ### Paired Data Generation
 
@@ -47,7 +48,7 @@ The inference code based on Uformer is released Now. Your can download the pretr
 
 - [ ] Add training code and config files.
 - [ ] Add a Colab version of our flare removal baseline model.
-- [ ] Add a test dataset with around 600 real-world flare-corrupted images (without ground truth).
+- [x] Add a test dataset with around 600 real-world flare-corrupted images (without ground truth).
 - [x] Upload a Baidu Netdisk version for our dataset and pretrained model. 
 
 ### License
