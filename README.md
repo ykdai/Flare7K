@@ -14,7 +14,7 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 
 ### Update
 
-- **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9247) page to find more details about our challenge.
+- **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9402) page to find more details about our challenge.
 - **2022.10.12**: Upload a flare-corrupted test dataset without ground truth.
 - **2022.10.11**: Upload the dataset and pretrained model in Baidu Netdisk.
 - **2022.10.09**: Update baseline inference code for flare removal.
