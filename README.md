@@ -46,7 +46,7 @@ If you only want to generate the flare-corrupted image without reflective flare,
 The inference code based on Uformer is released Now. Your can download the pretrained checkpoints on [[GoogleDrive](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing) | [Baidu Netdisk](https://pan.baidu.com/s/1EJSYIbbQe5SZYiNIcvrmNQ?pwd=xui4 )]. Please place it under the `experiments` folder and unzip it, then you can run the `deflare.ipynb` for inference. We provide two models, the model in the folder `uformer` can help remove both the reflective flares and scattering flares. The `uformer_noreflection` one can only help remove the scattering flares but is more robust. 
 
 ### Evaluation Code
-To calculate different metrics with our pretrained model, you can run the 'evaluate.py' by using:
+To calculate different metrics with our pretrained model, you can run the `evaluate.py` by using:
 ```
 python evaluate.py --input result/blend/ --gt dataset/Flare7k/test_data/real/gt/
 ```
