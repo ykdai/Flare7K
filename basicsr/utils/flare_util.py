@@ -130,7 +130,7 @@ def blend_light_source(input_scene, pred_scene,threshold=0.99,luminance_mode=Fal
         max_diameter = max(max_diameter, p["equivalent_diameter"])
 
     mask = np.float32(binary_mask)
-    kernel_size = round(0.5 * max_diameter) #default is 1.5
+    kernel_size = round(1.5 * max_diameter) #default is 1.5
     if kernel_size > 0:
         kernel = _create_disk_kernel(kernel_size)
         mask = cv2.filter2D(mask, -1, kernel)
