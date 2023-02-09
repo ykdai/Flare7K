@@ -53,8 +53,7 @@ python evaluate.py --input result/blend/ --gt dataset/Flare7k/test_data/real/gt/
 
 ### TODO
 
-- [ ] Add training code and config files.
-- [ ] Add a Colab version of our flare removal baseline model.
+- [x] Add training code and config files.
 - [x] Add a test dataset with around 600 real-world flare-corrupted images (without ground truth).
 - [x] Upload a Baidu Netdisk version for our dataset and pretrained model. 
 
