@@ -14,6 +14,7 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 
 ### Update
 
+- **2022.02.09**: Our training code is released.
 - **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9402) page to find more details about our challenge.
 - **2022.10.12**: Upload a flare-corrupted test dataset without ground truth.
 - **2022.10.11**: Upload the dataset and pretrained model in Baidu Netdisk.
@@ -49,6 +50,24 @@ The inference code based on Uformer is released Now. Your can download the pretr
 To calculate different metrics with our pretrained model, you can run the `evaluate.py` by using:
 ```
 python evaluate.py --input result/blend/ --gt dataset/Flare7k/test_data/real/gt/
+```
+
+### Training model
+
+**Training with single GPU**
+
+To train a model with your own data/model, you can edit the `options/uformer_flare7k_option.yml` and run the following codes. You can also add `--debug` command to start the debug mode:
+
+```
+python basicsr/train.py -opt options/uformer_flare7k_option.yml
+```
+
+**Training with multiple GPU**
+
+You can run the following command for the multiple GPU tranining:
+
+```
+CUDA_VISIBLE_DEVICES=0,1 bash scripts/dist_train.sh 2 options/uformer_flare7k_option.yml
 ```
 
 ### TODO
