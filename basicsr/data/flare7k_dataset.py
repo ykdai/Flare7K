@@ -156,6 +156,12 @@ class Flare_Image_Loader(data.Dataset):
 
 			threshold_value=0.99**gamma
 			flare_mask=torch.where(merge_img >threshold_value, one, zero)
+		elif self.mask_type=="flare":
+			one = torch.ones_like(base_img)
+			zero = torch.zeros_like(base_img)
+
+			threshold_value=0.7**gamma
+			flare_mask=torch.where(flare_img >threshold_value, one, zero)
 		return {'gt': adjust_gamma_reverse(base_img),'flare': adjust_gamma_reverse(flare_img),'lq': adjust_gamma_reverse(merge_img),'mask': flare_mask,'gamma': gamma}
 
 	def __len__(self):
@@ -219,6 +225,30 @@ class Image_Pair_Loader(data.Dataset):
         img_gt=self.transform(Image.open(gt_path).convert('RGB'))
 
         return {'lq': img_lq, 'gt': img_gt}
+
+    def __len__(self):
+        return len(self.paths['lq'])
+
+@DATASET_REGISTRY.register()
+class ImageMask_Pair_Loader(Image_Pair_Loader):
+    def __init__(self, opt):
+        Image_Pair_Loader.__init__(self,opt)
+        self.opt = opt
+        self.gt_folder, self.lq_folder,self.mask_folder = opt['dataroot_gt'], opt['dataroot_lq'], opt['dataroot_mask']
+        self.paths = glod_from_folder([self.lq_folder, self.gt_folder,self.mask_folder], ['lq', 'gt','mask'])
+        self.to_tensor=transforms.ToTensor()
+        self.gt_size=opt['gt_size']
+        self.transform = transforms.Compose([transforms.Resize(self.gt_size), transforms.CenterCrop(self.gt_size), transforms.ToTensor()])
+
+    def __getitem__(self, index):
+        gt_path = self.paths['gt'][index]
+        lq_path = self.paths['lq'][index]
+        mask_path = self.paths['mask'][index]
+        img_lq=self.transform(Image.open(lq_path).convert('RGB'))
+        img_gt=self.transform(Image.open(gt_path).convert('RGB'))
+        img_mask = self.transform(Image.open(mask_path).convert('RGB'))
+
+        return {'lq': img_lq, 'gt': img_gt,'mask':img_mask}
 
     def __len__(self):
         return len(self.paths)
