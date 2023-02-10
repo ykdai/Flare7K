@@ -81,7 +81,7 @@ CUDA_VISIBLE_DEVICES=0,1 bash scripts/dist_train.sh 2 options/uformer_flare7k_op
          ├── Light_Source
          ├── Streak
          
-   	├── test_data
+    ├── test_data
          ├── real
               ├── input
               ├── gt
