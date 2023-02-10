@@ -70,15 +70,43 @@ You can run the following command for the multiple GPU tranining:
 CUDA_VISIBLE_DEVICES=0,1 bash scripts/dist_train.sh 2 options/uformer_flare7k_option.yml
 ```
 
-### TODO
+### Flare7k structure
 
-- [x] Add training code and config files.
-- [x] Add a test dataset with around 600 real-world flare-corrupted images (without ground truth).
-- [x] Upload a Baidu Netdisk version for our dataset and pretrained model. 
+```
+├── Flare7k
+    ├── Reflective_Flare 
+    ├── Scattering_Flare
+         ├── Compound_Flare
+         ├── Glare_with_shimmer
+         ├── Light_Source
+         ├── Streak
+         
+   	├── test_data
+         ├── real
+              ├── input
+              ├── gt
+         ├── synthetic
+              ├── input
+              ├── gt
+
+```
 
 ### License
 
 This project is licensed under <a rel="license" href="https://github.com/ykdai/Flare7K/blob/main/LICENSE">S-Lab License 1.0</a>. Redistribution and use of the dataset and code for non-commercial purposes should follow this license.
+
+### Citation
+
+If you find this work useful, please cite:
+
+```
+@inproceedings{dai2022flare7k,
+  title={Flare7K: A Phenomenological Nighttime Flare Removal Dataset},
+  author={Dai, Yuekun and Li, Chongyi and Zhou, Shangchen and Feng, Ruicheng and Loy, Chen Change},
+  booktitle={Thirty-sixth Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+  year={2022}
+}
+```
 
 ### Contact
 If you have any question, please feel free to reach me out at `ydai005@e.ntu.edu.sg`.
