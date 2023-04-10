@@ -32,6 +32,28 @@ Flare7K, the first nighttime flare removal dataset, which is generated based on 
 | Background Images| [link](https://pan.baidu.com/s/1BYPRCNSsVmn4VvuU4y4C-Q?pwd=zoyv) | [link](https://drive.google.com/file/d/1GNFGWfUbgXfELx5fZtjTjU2qqWnEa-Lr/view) | 23,949 | The background images are sampled from [[Single Image Reflection Removal with Perceptual Losses, Zhang et al., CVPR 2018]](https://people.eecs.berkeley.edu/~cecilia77/project-pages/reflection.html). We filter our most of the flare-corrupted images and overexposed images.|
 | Flare-corrupted images | [link](https://pan.baidu.com/s/1bCOOpO3FKBZvI1aezfbFOw?pwd=ears) | [link](https://drive.google.com/file/d/19kLXf8roHoJmxyphYvrCs9zDAXsrL1sU/view?usp=sharing) | 645 | We offer an extra flare-corrupted dataset without ground truth. It contains 645 images captured by different cameras and some images are very challenging. |
 
+### Installation
+
+1. Clone the repo
+
+    ```bash
+    git clone https://github.com/ykdai/Flare7K.git
+    ```
+
+1. Install dependent packages
+
+    ```bash
+    cd Flare7K
+    pip install -r requirements.txt
+    ```
+
+1. Install Flare7K<br>
+    Please run the following commands in the **Flare7K root path** to install Flare7K:<br>
+    
+    ```bash
+    python setup.py develop
+    ```
+
 ### Paired Data Generation
 
 We provide a on-the-fly dataloader function and a flare-corrupted/flare-free pairs generation script in this repository. To use this function, please put the Flare7K dataset and 24K Flickr dataset on the same path with the `generate_flare.ipynb` file.
