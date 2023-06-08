@@ -6,23 +6,27 @@
 
 This repository provides the official implementation for the following two papers:
 
+<p>
+<div><strong>Flare7K: A Phenomenological Nighttime Flare Removal Dataset</strong></div>
+<div><a href="https://ykdai.github.io/">Yuekun Dai</a>, 
+   	<a href="https://li-chongyi.github.io/">Chongyi Li</a>,
+    <a href="https://shangchenzhou.com/">Shangchen Zhou</a>,
+    <a href="https://jnjaby.github.io/">Ruicheng Feng</a>, 
+    <a href="https://www.mmlab-ntu.com/person/ccloy/">Chen Change Loy</a></div>
+<div>Accepted to <strong>NeurIPS 2022</strong></div><div><a href="https://arxiv.org/abs/2210.06570"> arXiv </a>
+</p>
 
-
-**Flare7K: A Phenomenological Nighttime Flare Removal Dataset**
-
-[Yuekun Dai](https://ykdai.github.io/), [Chongyi Li](https://li-chongyi.github.io/), [Shangchen Zhou](https://shangchenzhou.com/), [Ruicheng Feng](https://jnjaby.github.io/), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/)
-
-Accepted to **NeurIPS 2022**| [arXiv](https://arxiv.org/abs/2210.06570)
-
-
-
-**Flare7K++: Mixing Synthetic and Real Datasets for Nighttime Flare Removal and Beyond**
-
-[Yuekun Dai](https://ykdai.github.io/), [Chongyi Li](https://li-chongyi.github.io/), [Shangchen Zhou](https://shangchenzhou.com/), [Ruicheng Feng](https://jnjaby.github.io/), [Yihang Luo](https://github.com/Luo-Yihang), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/)
-
-arXiv Preprint 2023 | [arXiv](https://arxiv.org/abs/2306.04236)
-
-
+<p>
+<div><strong>Flare7K++: Mixing Synthetic and Real Datasets for Nighttime Flare Removal and Beyond</strong></div>
+<div><a href="https://ykdai.github.io/">Yuekun Dai</a>, 
+   	<a href="https://li-chongyi.github.io/">Chongyi Li</a>,
+    <a href="https://shangchenzhou.com/">Shangchen Zhou</a>,
+    <a href="https://jnjaby.github.io/">Ruicheng Feng</a>,
+    <a href="https://github.com/Luo-Yihang/">Yihang Luo</a>,
+    <a href="https://www.mmlab-ntu.com/person/ccloy/">Chen Change Loy</a></div>
+<div>arXiv Preprint, 2023</div>
+<div><a href="https://arxiv.org/abs/2306.04236"> arXiv </a>
+</p>
 
 ### Flare7K++
 **Flare7K++**, the first comprehensive nighttime flare removal dataset, consists of 962 real-captured flare images (**Flare-R**) and 7,000 synthetic flares (**Flare7K**). **Flare7K** is generated based on the observation and statistic of real-world nighttime lens flares. It offers 5,000 scattering flare images and 2,000 reflective flare images, consisting of 25 types of scattering flares and 10 types of reflective flares. **Flare-R** is captured by smartphone rear cameras with different lens contaminants in the dark room. These flare patterns can be randomly added to the flare-free images, forming the flare-corrupted and flare-free image pairs.
@@ -45,7 +49,7 @@ arXiv Preprint 2023 | [arXiv](https://arxiv.org/abs/2306.04236)
 
 |     | Baidu Netdisk | Google Drive | Number | Description|
 | :--- | :--: | :----: | :---- | ---- |
-| Flare7K++(**new**) | [link](https://pan.baidu.com/s/1wdK6b7aVazfoJbUo18qfgw?pwd=nips ) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) | 7,000 | We offers 5,000 scattering flare images and 2,000 reflective flare images, consisting of 25 types of scattering flares and 10 types of reflective flares.|
+| Flare7K++(**new**) | [link](https://pan.baidu.com/s/1wdK6b7aVazfoJbUo18qfgw?pwd=nips ) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) | 7,962 | Flare7K++ consists of Flare7K and Flare-R. Flare7K offers 5,000 scattering flare images and 2,000 reflective flare images, consisting of 25 types of scattering flares and 10 types of reflective flares. Flare-R offers 962 real-captured flare patterns. |
 | Background Images| [link](https://pan.baidu.com/s/1BYPRCNSsVmn4VvuU4y4C-Q?pwd=zoyv) | [link](https://drive.google.com/file/d/1GNFGWfUbgXfELx5fZtjTjU2qqWnEa-Lr/view) | 23,949 | The background images are sampled from [[Single Image Reflection Removal with Perceptual Losses, Zhang et al., CVPR 2018]](https://people.eecs.berkeley.edu/~cecilia77/project-pages/reflection.html). We filter our most of the flare-corrupted images and overexposed images.|
 | Flare-corrupted images | [link](https://pan.baidu.com/s/1bCOOpO3FKBZvI1aezfbFOw?pwd=ears) | [link](https://drive.google.com/file/d/19kLXf8roHoJmxyphYvrCs9zDAXsrL1sU/view?usp=sharing) | 645 | We offer an extra flare-corrupted dataset without ground truth. It contains 645 images captured by different cameras and some images are very challenging. |
 
@@ -63,10 +67,10 @@ If you only want to generate the flare-corrupted image without reflective flare,
 
 The inference code based on Uformer is released Now. Your can download the pretrained checkpoints on [[GoogleDrive](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing) | [Baidu Netdisk](https://pan.baidu.com/s/1EJSYIbbQe5SZYiNIcvrmNQ?pwd=xui4 )]. Please place it under the `experiments` folder and unzip it, then you can run the `deflare.ipynb` for inference. We provide two models, the model in the folder `uformer` can help remove both the reflective flares and scattering flares. The `uformer_noreflection` one can only help remove the scattering flares but is more robust. 
 
-| Training Data      |                        Baidu Netdisk                         |                         Google Drive                         |
-| :----------------- | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| Flare7K            | [link](https://pan.baidu.com/s/1fiuOcygs0bfhWBvYndkVtw?pwd=x420) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) |
-| Flare7K++(**new**) |                         Coming soon                          |                         Coming soon                          |
+| Training Data       |                        Baidu Netdisk                         |                         Google Drive                         |
+| :------------------ | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| Flare7K             | [link](https://pan.baidu.com/s/1fiuOcygs0bfhWBvYndkVtw?pwd=x420) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) |
+| Flare7K++ (**new**) |                         Coming soon                          |                         Coming soon                          |
 
 ### Evaluation Code
 To calculate different metrics with our pretrained model, you can run the `evaluate.py` by using:
