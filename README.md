@@ -33,8 +33,8 @@ This repository provides the official implementation for the following two paper
 
 ### Update
 
-- **2022.06.09**: We will release the checkpoint and training code for our Flare7K++. Please stay tuned🤗.
-- **2022.06.08**: We create a mixing dataset called **Flare7K++** that augments the synthetic Flare7K dataset with a new real-captured **Flare-R** dataset.
+- **2022.06.12**: We released the checkpoint for our Flare7K++. More training details can be found at our new technical report: [arxiv](https://arxiv.org/abs/2306.04236).
+- **2022.06.08**: We create a mixing dataset called **Flare7K++** that augments the synthetic **Flare7K** dataset with a new real-captured **Flare-R** dataset.
 - **2022.02.09**: Our training code is released.
 - **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9402) page to find more details about our challenge.
 - **2022.10.12**: Upload a flare-corrupted test dataset without ground truth.
@@ -69,13 +69,13 @@ The inference code based on Uformer is released Now. Your can download the pretr
 
 | Training Data       |                        Baidu Netdisk                         |                         Google Drive                         |
 | :------------------ | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| Flare7K             | [link](https://pan.baidu.com/s/1fiuOcygs0bfhWBvYndkVtw?pwd=x420) | [link](https://drive.google.com/file/d/1PPXWxn7gYvqwHX301SuWmjI7IUUtqxab/view) |
-| Flare7K++ (**new**) |                         Coming soon                          |                         Coming soon                          |
+| Flare7K             | [link](https://pan.baidu.com/s/1EJSYIbbQe5SZYiNIcvrmNQ?pwd=xui4) | [link](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing) |
+| Flare7K++ (**new**) | [link](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)  | [link](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)|
 
 ### Evaluation Code
 To calculate different metrics with our pretrained model, you can run the `evaluate.py` by using:
 ```
-python evaluate.py --input result/blend/ --gt dataset/Flare7k/test_data/real/gt/
+python evaluate.py --input result/blend/ --gt dataset/Flare7Kpp/test_data/real/gt/ --mask dataset/Flare7Kpp/test_data/real/mask/
 ```
 
 ### Training model
