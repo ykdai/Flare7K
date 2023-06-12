@@ -33,7 +33,7 @@ This repository provides the official implementation for the following two paper
 
 ### Update
 
-- **2022.06.12**: We released the checkpoint for our Flare7K++. More training details can be found at our new technical report: [arxiv](https://arxiv.org/abs/2306.04236).
+- **2022.06.12**: We released the checkpoint for our **Flare7K++** [[Baidu Netdisk](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)/[Google Drive](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)]. More training details can be found at our new technical report: [arxiv](https://arxiv.org/abs/2306.04236).
 - **2022.06.08**: We create a mixing dataset called **Flare7K++** that augments the synthetic **Flare7K** dataset with a new real-captured **Flare-R** dataset.
 - **2022.02.09**: Our training code is released.
 - **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9402) page to find more details about our challenge.
@@ -44,6 +44,28 @@ This repository provides the official implementation for the following two paper
 - **2022.08.27**: Update dataloader for our dataset.
 - **2022.08.25**: Increase the number of test images from 20 to 100. Please download the latest version of our Flare7K dataset.
 - **2022.08.19**: This repo is created.
+
+### Installation
+
+1. Clone the repo
+
+    ```bash
+    git clone https://github.com/ykdai/Flare7K.git
+    ```
+
+1. Install dependent packages
+
+    ```bash
+    cd Flare7K
+    pip install -r requirements.txt
+    ```
+
+1. Install Flare7K<br>
+    Please run the following commands in the **Flare7K root path** to install Flare7K:<br>
+
+    ```bash
+    python setup.py develop
+    ```
 
 ### Data Download
 
@@ -65,12 +87,22 @@ If you only want to generate the flare-corrupted image without reflective flare,
 
 ### Pretrained Model
 
-The inference code based on Uformer is released Now. Your can download the pretrained checkpoints on [[GoogleDrive](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing) | [Baidu Netdisk](https://pan.baidu.com/s/1EJSYIbbQe5SZYiNIcvrmNQ?pwd=xui4 )]. Please place it under the `experiments` folder and unzip it, then you can run the `deflare.ipynb` for inference. We provide two models, the model in the folder `uformer` can help remove both the reflective flares and scattering flares. The `uformer_noreflection` one can only help remove the scattering flares but is more robust. 
+The inference code based on Uformer is released Now. Your can download the pretrained checkpoints from the following links. Please place it under the `experiments` folder and unzip it, then you can run the `test.py` for inference. We provide two checkpoints for models training on Flare7K, the model in the folder `uformer` can help remove both the reflective flares and scattering flares. The `uformer_noreflection` one can only help remove the scattering flares but is more robust. Now, we prefer the users to test our new model trained on Flare7K++, it can achieve better results and more realistic light source.
 
 | Training Data       |                        Baidu Netdisk                         |                         Google Drive                         |
 | :------------------ | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | Flare7K             | [link](https://pan.baidu.com/s/1EJSYIbbQe5SZYiNIcvrmNQ?pwd=xui4) | [link](https://drive.google.com/file/d/1uFzIBNxfq-82GTBQZ_5EE9jgDh79HVLy/view?usp=sharing) |
 | Flare7K++ (**new**) | [link](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)  | [link](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)|
+
+### Inference Code
+To estimate the flare-free images with our checkpoint pretrained on Flare7K++, you can run the `test.py` by using:
+```
+python test.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7kpp/ --model_path experiments/flare7kpp/net_g_last.pth --flare7kpp
+```
+If you use our checkpoint pretrained on Flare7K, please run:
+```
+python test.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7k/ --model_path experiments/flare7k/net_g_last.pth
+```
 
 ### Evaluation Code
 To calculate different metrics with our pretrained model, you can run the `evaluate.py` by using:
