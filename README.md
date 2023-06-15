@@ -119,6 +119,10 @@ To train a model with your own data/model, you can edit the `options/uformer_fla
 ```
 python basicsr/train.py -opt options/uformer_flare7k_option.yml
 ```
+If you want to use Flare7K++ for training, please use:
+```
+python basicsr/train.py -opt options/uformer_flare7kpp_baseline_option.yml
+```
 
 **Training with multiple GPU**
 
@@ -126,6 +130,10 @@ You can run the following command for the multiple GPU tranining:
 
 ```
 CUDA_VISIBLE_DEVICES=0,1 bash scripts/dist_train.sh 2 options/uformer_flare7k_option.yml
+```
+If you want to use Flare7K++ for training, please use:
+```
+CUDA_VISIBLE_DEVICES=0,1 bash scripts/dist_train.sh 2 options/uformer_flare7kpp_baseline_option.yml
 ```
 
 ### Flare7k++ structure
