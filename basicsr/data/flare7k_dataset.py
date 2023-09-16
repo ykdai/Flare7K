@@ -251,4 +251,4 @@ class ImageMask_Pair_Loader(Image_Pair_Loader):
         return {'lq': img_lq, 'gt': img_gt,'mask':img_mask}
 
     def __len__(self):
-        return len(self.paths)
+        return len(self.paths['lq'])
