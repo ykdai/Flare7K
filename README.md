@@ -95,13 +95,13 @@ The inference code based on Uformer is released Now. Your can download the pretr
 | Flare7K++ (**new**) | [link](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)  | [link](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)|
 
 ### Inference Code
-To estimate the flare-free images with our checkpoint pretrained on Flare7K++, you can run the `test.py` by using:
+To estimate the flare-free images with our checkpoint pretrained on Flare7K++, you can run the `test.py` or `test_large.py` (for image larger than 512*512) by using:
 ```
-python test.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7kpp/ --model_path experiments/flare7kpp/net_g_last.pth --flare7kpp
+python test_large.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7kpp/ --model_path experiments/flare7kpp/net_g_last.pth --flare7kpp
 ```
 If you use our checkpoint pretrained on Flare7K, please run:
 ```
-python test.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7k/ --model_path experiments/flare7k/net_g_last.pth
+python test_large.py --input dataset/Flare7Kpp/test_data/real/input --output result/test_real/flare7k/ --model_path experiments/flare7k/net_g_last.pth
 ```
 
 ### Evaluation Code
