@@ -79,7 +79,6 @@ class Flare_Image_Loader(data.Dataset):
 		else:
 			base_img=to_tensor(base_img)
 			base_img=adjust_gamma(base_img)
-			base_img=base_img.permute(2,0,1)
 		sigma_chi=0.01*np.random.chisquare(df=1)
 		base_img=Normal(base_img,sigma_chi).sample()
 		gain=np.random.uniform(0.5,1.2)
