@@ -1,6 +1,6 @@
 # Flare7K++: Mixing Synthetic and Real Datasets for Nighttime Flare Removal and Beyond
 
-[Project Page](https://ykdai.github.io/) | [Video](https://youtu.be/CR3VFj4NOQM)
+[Project Page](https://ykdai.github.io/projects/Flare7K) | [Video](https://youtu.be/CR3VFj4NOQM)
 
 <img src="assets/flare7k.png" width="800px"/>
 
