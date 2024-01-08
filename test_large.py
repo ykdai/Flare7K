@@ -34,7 +34,8 @@ def mkdir(path):
 		os.makedirs(path)
 
 def load_params(model_path):
-     full_model=torch.load(model_path)
+    #  full_model=torch.load(model_path)
+     full_model=torch.load(model_path, map_location=torch.device('cpu'))
      if 'params_ema' in full_model:
           return full_model['params_ema']
      elif 'params' in full_model:
@@ -45,6 +46,7 @@ def load_params(model_path):
 class ImageProcessor:
     def __init__(self, model):
         self.model = model
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     def resize_image(self, image, target_size):
         original_width, original_height = image.size
@@ -66,43 +68,54 @@ class ImageProcessor:
 
         # Resize the image proportionally to make the shorter side 512 pixels
         resized_image = self.resize_image(original_image, 512)
-
-        # Get the resized image's size
         resized_width, resized_height = resized_image.size
 
-        cropped_image1 = resized_image.crop((0, 0, 512, 512))
-        cropped_image2 = resized_image.crop((resized_width - 512, resized_height - 512, resized_width, resized_height))
-
-        # Convert PIL images to NumPy arrays
-        image_array1 = np.array(cropped_image1)
-        image_array2 = np.array(cropped_image2)
-
-        # Process the two cropped images using the model
-        processed_image1 = self.model(to_tensor(image_array1).unsqueeze(0).cuda()).squeeze(0)
-        processed_image2 = self.model(to_tensor(image_array2).unsqueeze(0).cuda()).squeeze(0)
-        # Apply interpolation to the overlapped region
+        # Process each 512-pixel segment separately
+        segments = []
+        overlaps = []
         if resized_width > 512:
-            overlap_width = 512 - (resized_width - 512)
-            alpha = torch.linspace(0, 1, steps=overlap_width).view(1, overlap_width, 1).expand(512, overlap_width, 6).permute(2,0,1).cuda()
-            merged_image = alpha * processed_image2[:,:, :overlap_width] + (1 - alpha) * processed_image1[:,:, -overlap_width:]
+            for end_x in range(512, resized_width+256, 256):
+                end_x = min(end_x, resized_width)
+                overlaps.append(end_x)
+                cropped_image = resized_image.crop((end_x-512, 0, end_x, 512))
+                processed_segment = self.model(to_tensor(cropped_image).unsqueeze(0).to(self.device)).squeeze(0)
+                segments.append(processed_segment)
         else:
-            overlap_height = 512 - (resized_height - 512)
-            alpha = torch.linspace(0, 1, steps=overlap_height).view(overlap_height, 1, 1).expand(overlap_height, 512, 6).permute(2,0,1).cuda()
-            merged_image = alpha * processed_image2[:,:overlap_height] + (1 - alpha) * processed_image1[:,-overlap_height:]
+            for end_y in range(512, resized_height+256, 256):
+                end_y = min(end_y, resized_height)
+                overlaps.append(end_y)
+                cropped_image = resized_image.crop((0, end_y-512, 512, end_y))
+                processed_segment = self.model(to_tensor(cropped_image).unsqueeze(0).to(self.device)).squeeze(0)
+                segments.append(processed_segment)
+        overlaps = [0] + [prev - cur + 512 for prev, cur in zip(overlaps[:-1], overlaps[1:])]
 
-        # Concatenate the non-overlapping regions
+        # Blending the segments
+        for i in range(1, len(segments)):
+            overlap = overlaps[i]
+            alpha = torch.linspace(0, 1, steps=overlap).to(self.device)
+            if resized_width > 512:
+                alpha = alpha.view(1, -1, 1).expand(512, -1, 6).permute(2,0,1)
+                segments[i][:, :, :overlap] = alpha * segments[i][:, :, :overlap] + (1 - alpha) * segments[i-1][:, :, -overlap:]
+            else:
+                alpha = alpha.view(-1, 1, 1).expand(-1, 512, 6).permute(2,0,1)
+                segments[i][:, :overlap, :] = alpha * segments[i][:, :overlap, :] + (1 - alpha) * segments[i-1][:, -overlap:, :]
+
+        # Concatenating all the segments
         if resized_width > 512:
-            merged_image = torch.cat((processed_image1[:,:, :512-overlap_width], merged_image, processed_image2[:,:, overlap_width:]), dim=2)
+            blended = [segment[:,:,:-overlap] for segment, overlap in zip(segments[:-1], overlaps[1:])] + [segments[-1]]
+            merged_image = torch.cat(blended, dim=2)
         else:
-            merged_image = torch.cat((processed_image1[:,:512-overlap_height], merged_image, processed_image2[:,overlap_height:]), dim=1)
+            blended = [segment[:,:-overlap,:] for segment, overlap in zip(segments[:-1], overlaps[1:])] + [segments[-1]]
+            merged_image = torch.cat(segments, dim=1)
 
         return merged_image
 
 def demo(images_path,output_path,model_type,output_ch,pretrain_dir,flare7kpp_flag):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-    test_path=glob.glob(images_path)
+    test_path=sorted(glob.glob(images_path))
     result_path=output_path
+    os.makedirs(result_path, exist_ok=True)
     torch.cuda.empty_cache()
     if model_type=='Uformer':
         model=Uformer(img_size=512,img_ch=3,output_ch=output_ch).cuda()
@@ -116,16 +129,16 @@ def demo(images_path,output_path,model_type,output_ch,pretrain_dir,flare7kpp_fla
     to_tensor=transforms.ToTensor()
 
     for i,image_path in tqdm(enumerate(test_path)):
+        img_name = os.path.basename(image_path)
         if not flare7kpp_flag:
             mkdir(os.path.join(result_path,"deflare/"))
-            deflare_path = os.path.join(result_path,"deflare/",str(i).zfill(5)+"_deflare.jpg")
+            deflare_path = os.path.join(result_path,"deflare/",img_name)
 
         mkdir(os.path.join(result_path,"flare/"))
         mkdir(os.path.join(result_path,"blend/"))
         
-        #PIL will be faster while saving with JPG rather than PNG for large images
-        flare_path = os.path.join(result_path,"flare/",str(i).zfill(5)+"_flare.jpg")
-        blend_path = os.path.join(result_path,"blend/",str(i).zfill(5)+"_blend.jpg")
+        flare_path = os.path.join(result_path,"flare/",img_name)
+        blend_path = os.path.join(result_path,"blend/",img_name)
 
         merge_img = Image.open(image_path).convert("RGB")
 
