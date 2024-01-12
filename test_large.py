@@ -106,7 +106,7 @@ class ImageProcessor:
             merged_image = torch.cat(blended, dim=2)
         else:
             blended = [segment[:,:-overlap,:] for segment, overlap in zip(segments[:-1], overlaps[1:])] + [segments[-1]]
-            merged_image = torch.cat(segments, dim=1)
+            merged_image = torch.cat(blended, dim=1)
 
         return merged_image
 
