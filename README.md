@@ -33,9 +33,9 @@ This repository provides the official implementation for the following two paper
 
 ### Update
 
-- **2022.06.12**: We released the training codes and checkpoints for our **Flare7K++** [[Baidu Netdisk](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)/[Google Drive](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)]. More training details can be found at our new technical report: [arxiv](https://arxiv.org/abs/2306.04236).
-- **2022.06.08**: We create a mixing dataset called **Flare7K++** that augments the synthetic **Flare7K** dataset with a new real-captured **Flare-R** dataset.
-- **2022.02.09**: Our training code is released.
+- **2023.06.12**: We released the training codes and checkpoints for our **Flare7K++** [[Baidu Netdisk](https://pan.baidu.com/s/1lC4zSda5O2aUtMPlZ9sRiw?pwd=nips)/[Google Drive](https://drive.google.com/file/d/17AX9BJ-GS0in9Ey7vw3BVPISm67Rpzho/view?usp=sharing)]. More training details can be found at our new technical report: [arxiv](https://arxiv.org/abs/2306.04236).
+- **2023.06.08**: We create a mixing dataset called **Flare7K++** that augments the synthetic **Flare7K** dataset with a new real-captured **Flare-R** dataset.
+- **2023.02.09**: Our training code is released.
 - **2022.12.28**: The [MIPI Workshop 2023](https://mipi-challenge.org/MIPI2023/) is released now. Our dataset serves as a track in this challenge. Please check the [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/9402) page to find more details about our challenge.
 - **2022.10.12**: Upload a flare-corrupted test dataset without ground truth.
 - **2022.10.11**: Upload the dataset and pretrained model in Baidu Netdisk.
