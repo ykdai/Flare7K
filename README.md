@@ -24,7 +24,7 @@ This repository provides the official implementation for the following two paper
     <a href="https://jnjaby.github.io/">Ruicheng Feng</a>,
     <a href="https://github.com/Luo-Yihang/">Yihang Luo</a>,
     <a href="https://www.mmlab-ntu.com/person/ccloy/">Chen Change Loy</a></div>
-<div>arXiv Preprint, 2023</div>
+<div>Accepted to <strong>TPAMI, 2024</strong></div>
 <div><a href="https://arxiv.org/abs/2306.04236"> arXiv </a>
 </p>
 
