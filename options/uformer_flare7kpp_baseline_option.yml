@@ -14,19 +14,19 @@ datasets:
     scattering_dict:
       Flare7k_scattering: dataset/Flare7Kpp/Flare7K/Scattering_Flare/Compound_Flare
       Real_scattering1: dataset/Flare7Kpp/Flare-R/Compound_Flare
-    reflective_dict: 
-      Flare7k_reflective: dataset/Flare7Kpp/Flare7K/Reflective_Flare
+    reflective_dict: # you can also comment this part to get more robust result
+      Flare7k_reflective: dataset/Flare7Kpp/Flare7K/Reflective_Flare 
       Real_reflective1: ~
     light_dict:
       Flare7k_light: dataset/Flare7Kpp/Flare7K/Scattering_Flare/Light_Source
       Real_light1: dataset/Flare7Kpp/Flare-R/Light_Source
-    data_ratio: [0.5, 0.5] # or [0.6, 0.4], only a ratio is enough
+    data_ratio: [0.5, 0.5] # the ratio should be like [0.6, 0.4], [0.7, 0.3]
     transform_base:
       img_size: 512
     transform_flare:
-      scale_min: 0.7
-      scale_max: 1.2
-      translate: 100
+      scale_min: 0.8
+      scale_max: 1.5
+      translate: 300
       shear: 20
     mask_type: ~
 
