@@ -211,8 +211,11 @@ class DeflareModel(SRModel):
     def get_current_visuals(self):
         out_dict = OrderedDict()
         out_dict['lq'] = self.lq.detach().cpu()
-        self.blend= blend_light_source(self.lq, self.deflare, 0.97)
-        out_dict['result']= self.blend.detach().cpu()
+        if self.output_ch==3:
+            self.blend= blend_light_source(self.lq, self.deflare, 0.97)
+            out_dict['result']= self.blend.detach().cpu()
+        elif self.output_ch ==6:
+            out_dict['result']= self.deflare.detach().cpu()
         out_dict['flare']=self.flare_hat.detach().cpu()
         if hasattr(self, 'gt'):
             out_dict['gt'] = self.gt.detach().cpu()
